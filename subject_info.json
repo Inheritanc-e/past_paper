@@ -1,0 +1,12 @@
+{
+    "Subject_Info":{
+        "9709": "Mathematics", 
+        "9729": "Chemistry",
+        "9702": "Physics",
+        "9231": "Mathematics Further"
+    },
+
+    "Season":{
+        "MJ":"s", "FM":"m",  "ON":"w"
+    }
+}
