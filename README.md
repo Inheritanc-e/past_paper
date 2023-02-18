@@ -12,7 +12,8 @@ This opens the past paper of a levels subject after given a code in the form of
 4. You will find a **Download ZIP** option. Click on that.
 5. **Download the zip file as `past_paper` and not `past_paper-main`.** 
 6. Extract the files in your desired folder.
-7. Open terminal and `cd` to the directory in which your folder is in.
-8. Type `python -m past_paper`
-9. Your program is now up and running, if you want to exit type `q`.
-10. Now, everytime you want to open a past paper, you just have execute step 7.
+7. Open the folder and go to `subject_info.json`. If the subjects you have are not there, replace them with the current ones in the same format as they existed.
+9. Open terminal and `cd` to the directory in which your folder is in.
+10. Type `python -m past_paper`
+11. Your program is now up and running, if you want to exit type `q`.
+12. Now, everytime you want to open a past paper, you just have execute step 7.
