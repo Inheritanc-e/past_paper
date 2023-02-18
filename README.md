@@ -10,8 +10,9 @@ This opens the past paper of a levels subject after given a code in the form of
 2. Now that you've installed python you're ready to download and run the code.
 3. Click on **Code** button above
 4. You will find a **Download ZIP** option. Click on that.
-5. Extract the files in your desired folder.
-6. Open terminal and `cd` to the directory in which your folder is in.
-7. Type `python -m past_paper`
-8. Your program is now up and running, if you want to exit type `q`.
-9. Now, everytime you want to open a past paper, you just have execute step 7.
+5. **Download the zip file as `past_paper` and not `past_paper-main`.** 
+6. Extract the files in your desired folder.
+7. Open terminal and `cd` to the directory in which your folder is in.
+8. Type `python -m past_paper`
+9. Your program is now up and running, if you want to exit type `q`.
+10. Now, everytime you want to open a past paper, you just have execute step 7.
