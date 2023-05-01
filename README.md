@@ -10,10 +10,12 @@ This opens the past paper of a levels subject after given a code in the form of
 2. Now that you've installed python you're ready to download and run the code.
 3. Click on **Code** button above
 4. You will find a **Download ZIP** option. Click on that.
-5. **Download the zip file as `past_paper` and not `past_paper-main`.** 
+5. **Download the zip file as `past_paper` and not `past_paper-main`.**
 6. Extract the files in your desired folder.
 7. Open the folder and go to `subject_info.json`. If the subjects you have are not there, replace them with the current ones in the same format as they existed.
-9. Open terminal and `cd` to the directory in which your folder is in.
-10. Type `python -m past_paper`
+8. Open terminal and `cd` to the directory in which your folder is in.
+9. Type `python -m past_paper`
+10. You will be presented with two different modes, `get paper` and `ms`.
+    Here, `get paper` mode is for downloading papers of any given subject using the format specified `subject code/paper number/year start-year finish`.
 11. Your program is now up and running, if you want to exit type `q`.
 12. Now, everytime you want to open a past paper, you just have execute step 7.
