@@ -75,14 +75,14 @@ def download_qp(link_codes, parsing_string:str) -> None:
     # sourcery skip: avoid-builtin-shadow
     links = [(f"{link['year']}-{link['season']}-{link['paper']}", get_link(link, 'qp')) for link in link_codes]
     with contextlib.suppress(FileExistsError):
-        dir = f"past_paper/{'.'.join(parsing_string.split('/'))}"
+        dir = f"papers/{'.'.join(parsing_string.split('/'))}"
         os.makedirs(dir)
         
     for l in links:
         print(l)
         res = requests.get(l[1])
         if res.status_code == 200:
-            with open(f"{dir}/{l[0]}.pdf", 'wb') as f:
+            with open(f"papers/{dir}/{l[0]}.pdf", 'wb') as f:
                 f.write(res.content)
     
 def open_url(link:str) -> None:
@@ -96,6 +96,8 @@ while True:
             continue
         open_url(get_link(get_link_info(parse_object), 'ms'))
     elif mode == 'get paper':
+        with contextlib.suppress(FileExistsError):
+            os.mkdir('papers')
         parse_object = input("Enter the subject-code/paper/year-range:")# 9709/1/18-21
         if parse_object == 'q':
             continue
