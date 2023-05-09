@@ -91,18 +91,21 @@ def open_url(link:str) -> None:
 while True:
     mode = input("\n Enter your working mode:")
     if mode == "ms":
-        parse_object = input("Enter the subject code -> ")
-        if parse_object == 'q':
-            continue
-        open_url(get_link(get_link_info(parse_object), 'ms'))
+        while True:
+            parse_object = input("Enter the subject code -> ")
+            if parse_object == 'q':
+                break
+            open_url(get_link(get_link_info(parse_object), 'ms'))
     elif mode == 'get paper':
         with contextlib.suppress(FileExistsError):
             os.mkdir('papers')
-        parse_object = input("Enter the subject-code/paper/year-range:")# 9709/1/18-21
-        if parse_object == 'q':
-            continue
-        download_qp(
-            get_qp(parse_object), parse_object
+        while True:
+            parse_object = input("Enter the subject-code/paper/year-range:")# 9709/1/18-21
+            if parse_object == 'q':
+                break
+            download_qp(
+                get_qp(parse_object), parse_object
         )
     else:
-        continue
+        break
+    
