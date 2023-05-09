@@ -82,7 +82,7 @@ def download_qp(link_codes, parsing_string:str) -> None:
         print(l)
         res = requests.get(l[1])
         if res.status_code == 200:
-            with open(f"papers/{dir}/{l[0]}.pdf", 'wb') as f:
+            with open(f"{dir}/{l[0]}.pdf", 'wb') as f:
                 f.write(res.content)
     
 def open_url(link:str) -> None:
@@ -105,4 +105,4 @@ while True:
             get_qp(parse_object), parse_object
         )
     else:
-        break
+        continue
