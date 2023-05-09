@@ -93,7 +93,7 @@ while True:
     if mode == "ms":
         parse_object = input("\n Enter the subject code -> ")
         if parse_object == 'q':
-            break
+            continue
         open_url(get_link(get_link_info(parse_object), 'ms'))
     elif mode == 'get paper':
         parse_object = input("\n Enter the subject-code/paper/year-range:") # 9709/1/18-21
