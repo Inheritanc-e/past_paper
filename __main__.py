@@ -75,7 +75,7 @@ def download_qp(link_codes, parsing_string:str) -> None:
     # sourcery skip: avoid-builtin-shadow
     links = [(f"{link['year']}-{link['season']}-{link['paper']}", get_link(link, 'qp')) for link in link_codes]
     with contextlib.suppress(FileExistsError):
-        dir = f"past_paper/{':'.join(parsing_string.split('/'))}"
+        dir = f"past_paper/{'.'.join(parsing_string.split('/'))}"
         os.makedirs(dir)
         
     for l in links:
