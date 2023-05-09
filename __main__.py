@@ -89,14 +89,16 @@ def open_url(link:str) -> None:
     webbrowser.open(link)
     
 while True:
-    mode = input("Enter your working mode:")
+    mode = input("\n Enter your working mode:")
     if mode == "ms":
-        parse_object = input("\n Enter the subject code -> ")
+        parse_object = input("Enter the subject code -> ")
         if parse_object == 'q':
             continue
         open_url(get_link(get_link_info(parse_object), 'ms'))
     elif mode == 'get paper':
-        parse_object = input("\n Enter the subject-code/paper/year-range:") # 9709/1/18-21
+        parse_object = input("Enter the subject-code/paper/year-range:")# 9709/1/18-21
+        if parse_object == 'q':
+            continue
         download_qp(
             get_qp(parse_object), parse_object
         )
