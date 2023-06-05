@@ -90,12 +90,12 @@ def open_url(link:str) -> None:
     
 while True:
     mode = input("\n Enter your working mode:")
-    if mode == "ms":
+    if mode in ["ms", "qp"]:
         while True:
             parse_object = input("Enter the subject code -> ")
             if parse_object == 'q':
                 break
-            open_url(get_link(get_link_info(parse_object), 'ms'))
+            open_url(get_link(get_link_info(parse_object), mode))        
     elif mode == 'get paper':
         with contextlib.suppress(FileExistsError):
             os.mkdir('papers')
