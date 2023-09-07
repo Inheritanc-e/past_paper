@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 requests = "*"
+pymupdf = "*"
 
 [dev-packages]
 
