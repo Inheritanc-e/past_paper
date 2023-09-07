@@ -177,8 +177,8 @@ while True:
                 compiled_document = Compile.create_paper_compilation()
                 compiled_name = f"{s_info['Subject_Info'][parse_object.split('/')[0]].lower()}_p{parse_object.split('/')[1]}.pdf"
                 
-                with open(compiled_name, 'w') as f:
-                    compiled_document.save(compiled_name)
+
+                compiled_document.save(compiled_name)
 
                 with contextlib.suppress(FileNotFoundError):    
                     for file in file_list:
