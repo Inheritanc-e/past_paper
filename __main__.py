@@ -10,10 +10,11 @@ import requests
 
 from fitz import TextWriter
 
-BASE_MS_LINK = "https://papers.gceguide.com/A%20Levels/{}%20({})/{}/{}_{}_ms_{}.pdf"
-BASE_QP_LINK = "https://papers.gceguide.com/A%20Levels/{}%20({})/{}/{}_{}_qp_{}.pdf"
 
-with open('past_paper/subject_info.json') as f:
+BASE_MS_LINK = "https://dynamicpapers.com/wp-content/uploads/2015/09/{}_{}_ms_{}.pdf"
+BASE_QP_LINK = "https://dynamicpapers.com/wp-content/uploads/2015/09/{}_{}_qp_{}.pdf"
+
+with open('subject_info.json') as f:
     s_info = json.load(f)
 
 def get_link_info(parsing_string:str) -> dict:
@@ -33,22 +34,13 @@ def get_link(info:dict, type:str) -> str:
     
     return (
         BASE_MS_LINK.format(
-            info['subject_name']
-            if len(info['subject_name'].split()) <= 1
-            else "%20-%20".join(info['subject_name'].split()),
-            info['subject_code'],
-            f"20{info['year']}",
             info['subject_code'],
             f"{info['season']}{info['year']}",
+
             info['paper'],
         )
         if type == 'ms'
         else BASE_QP_LINK.format(
-            info['subject_name']
-            if len(info['subject_name'].split()) <= 1
-            else "%20-%20".join(info['subject_name'].split()),
-            info['subject_code'],
-            f"20{info['year']}",
             info['subject_code'],
             f"{info['season']}{info['year']}",
             info['paper'],
@@ -84,7 +76,6 @@ def get_qp(parsing_string:str) -> t.List[dict]:
 def download_qp(link_codes, parsing_string:str) -> None:
     """Downloads the list of question paper extracted from `get_qp`"""
     # sourcery skip: avoid-builtin-shadow
-    
     links = [(f"{link['year']}-{link['season']}-{link['paper']}", get_link(link, 'qp')) for link in link_codes]
     with contextlib.suppress(FileExistsError):
         dir = f"papers/{'.'.join(parsing_string.split('/'))}"
@@ -163,27 +154,7 @@ while True:
 
             download_qp(
                 get_qp(parse_object), parse_object
-            )
-
-            if mode == 'compile paper':
-                second_parse = input("Enter the difference number of pages from the front page to your first page: ")
-                if second_parse == 'q':
-                    break
-                
-                file_path = f"papers/{'.'.join(parse_object.split('/'))}"
-                file_list = [f"{file_path}/{file}" for file in list(os.walk(file_path))[0][2]]
-                
-                Compile = Compilation(file_list, parse_object, int(second_parse))
-                compiled_document = Compile.create_paper_compilation()
-                compiled_name = f"{s_info['Subject_Info'][parse_object.split('/')[0]].lower()}_p{parse_object.split('/')[1]}.pdf"
-                
-                with open(f'papers/{compiled_name}', 'w') as f:
-                    compiled_document.save(f'papers/{compiled_name}')
-
-                with contextlib.suppress(FileNotFoundError):    
-                    for file in file_list:
-                        os.remove(file)
-                    os.rmdir(file_path)
+        )
     else:
         break
     
