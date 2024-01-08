@@ -76,6 +76,7 @@ def get_qp(parsing_string:str) -> t.List[dict]:
 def download_qp(link_codes, parsing_string:str) -> None:
     """Downloads the list of question paper extracted from `get_qp`"""
     # sourcery skip: avoid-builtin-shadow
+    
     links = [(f"{link['year']}-{link['season']}-{link['paper']}", get_link(link, 'qp')) for link in link_codes]
     with contextlib.suppress(FileExistsError):
         dir = f"papers/{'.'.join(parsing_string.split('/'))}"
@@ -154,7 +155,27 @@ while True:
 
             download_qp(
                 get_qp(parse_object), parse_object
-        )
+            )
+
+            if mode == 'compile paper':
+                second_parse = input("Enter the difference number of pages from the front page to your first page: ")
+                if second_parse == 'q':
+                    break
+                
+                file_path = f"papers/{'.'.join(parse_object.split('/'))}"
+                file_list = [f"{file_path}/{file}" for file in list(os.walk(file_path))[0][2]]
+                
+                Compile = Compilation(file_list, parse_object, int(second_parse))
+                compiled_document = Compile.create_paper_compilation()
+                compiled_name = f"{s_info['Subject_Info'][parse_object.split('/')[0]].lower()}_p{parse_object.split('/')[1]}.pdf"
+                
+
+                compiled_document.save(compiled_name)
+
+                with contextlib.suppress(FileNotFoundError):    
+                    for file in file_list:
+                        os.remove(file)
+                    os.rmdir(file_path)
     else:
         break
     
