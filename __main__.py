@@ -11,6 +11,9 @@ import requests
 
 from fitz import TextWriter
 
+
+#https://papers.gceguide.com/A%20Levels/Physics%20(9702)/2023/9702_s23_ms_42.pdf
+#https://papers.gceguide.com/A%20Levels/Physics%20(9702)/2023/42_s23_ms_42.pdf
 BASE_MS_LINK = "https://papers.gceguide.com/A%20Levels/{}%20({})/{}/{}_{}_ms_{}.pdf"
 BASE_QP_LINK = "https://papers.gceguide.com/A%20Levels/{}%20({})/{}/{}_{}_qp_{}.pdf"
 
@@ -32,10 +35,10 @@ def get_link(info:dict, type:str) -> str:
     """Returns the link object which would open the papers."""
     s_name = info['subject_name'] if len(info['subject_name'].split()) <= 1 \
         else '%20-%20'.join(info['subject_name'].split())
-
     return (
         BASE_MS_LINK.format(
             s_name ,
+            info['subject_code'],
             '20'+str(info['year']),
             info['subject_code'],
             info['season']+str(info['year']),
@@ -43,7 +46,7 @@ def get_link(info:dict, type:str) -> str:
         )
         if type == 'ms'
         else BASE_QP_LINK.format(
-            s_name,
+            s_name ,
             info['subject_code'],
             '20'+str(info['year']),
             info['subject_code'],
