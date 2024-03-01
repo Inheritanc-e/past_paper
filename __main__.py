@@ -152,9 +152,7 @@ class Compilation:
         doc.insert_pdf(self.merge_questions())
         doc.insert_pdf(self.set_last_page())
         return doc
-    
 
-    
 
 def open_url(link:str) -> None:
     webbrowser.open(link)
