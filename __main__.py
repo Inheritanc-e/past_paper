@@ -77,6 +77,20 @@ def get_qp(parsing_string:str) -> t.List[dict]:
     ]
     
     
+def get_yt(parsing_string:str, parsed:dict) -> str:
+    """
+    Returns a search results window in youtube for the question paper.
+    """ 
+    yt_base = "https://www.youtube.com/results?search_query={}%2F{}%2F{}%2F{}%2F{}"
+    
+    return  yt_base.format(
+        parsed['subject_code'],
+        parsed['paper'],
+        parsing_string.split('/')[2].upper(), 
+        parsing_string.split('/')[3].upper(),
+        parsed['year']
+    )
+       
 def download_qp(link_codes, parsing_string:str) -> None:
     """Downloads the list of question paper extracted from `get_qp`"""
     # sourcery skip: avoid-builtin-shadow
@@ -143,11 +157,16 @@ def open_url(link:str) -> None:
 while True:
     mode = input("\n Enter your working mode:")
 
-    if mode in ["ms", "qp"]:
+    if mode in ["ms", "qp", "yt"]:
         while True:
             parse_object = input("Enter the subject code -> ")
             if parse_object == 'q':
                 break
+            
+            if mode == "yt":
+                open_url(get_yt(parse_object, get_link_info(parse_object)))
+                break
+
             open_url(get_link(get_link_info(parse_object), mode))
     elif mode in ['get paper', 'compile paper']:
         with contextlib.suppress(FileExistsError):
