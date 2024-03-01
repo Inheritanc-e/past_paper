@@ -178,19 +178,19 @@ def define_options() -> str:
     A function that provies the user with the options present in the software.
     """
     return """
-                This program is designed to help you navigate past papers in a faster and more efficient manner. 
-                You are provided three functions to interact with an individual past paper:
-                    ms - Opens the mark scheme of the past paper.
-                    qp - Opens the question paper of the past paper. 
-                    yt - Opens a window searching for the solved video of given past paper. 
-                •Note: The format for all the above function is: 
-                    subject_code/paper/season/year,  i.e: 9702/42/m/j/22  (Opens physics 42 of 2022)
-                    
-                On top of that you are also provided functions to interact with many different past_papers.
-                    get-paper: bulk downloads question papers from the given range
-                    compile-paper: combines the bulk download into a single paper
-                •Note: The format for the above is: 
-                    subject_code/paper/year-range, i.e 9702/4/18-21 (Downloads all physics paper 4 from 2018-2021)
+    This program is designed to help you navigate past papers in a faster and more efficient manner. 
+    You are provided three functions to interact with an individual past paper:
+        ms - Opens the mark scheme of the past paper.
+        qp - Opens the question paper of the past paper. 
+        yt - Opens a window searching for the solved video of given past paper. 
+    •Note: The format for all the above function is: 
+        subject_code/paper/season/year,  i.e: 9702/42/m/j/22  (Opens physics 42 of 2022)
+        
+    On top of that you are also provided functions to interact with many different past_papers.
+        get-paper: bulk downloads question papers from the given range
+        compile-paper: combines the bulk download into a single paper
+    •Note: The format for the above is: 
+        subject_code/paper/year-range, i.e 9702/4/18-21 (Downloads all physics paper 4 from 2018-2021)
                 """
     
 count = 0
