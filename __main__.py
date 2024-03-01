@@ -84,6 +84,11 @@ class Setup_Compilation:
             )
         ]
         
+    def void_repeated(self) -> list:
+        """Avoids downloading repeated papers."""
+        ...                
+        
+        
     def download_qp(self) -> None:
         """Downloads the list of question paper extracted from `get_qp`"""
         # sourcery skip: avoid-builtin-shadow
@@ -99,13 +104,7 @@ class Setup_Compilation:
             res = requests.get(l[1])
             if res.status_code == 200:
                 with open(f"{dir}/{l[0]}.pdf", 'wb') as f:
-                    f.write(res.content)
-    
-    def compare_pdf(self, pdf_list:list) -> bool:
-        """Compares two past papers too determine whether they are repeated or not."""                
-        ...
-            
-            
+                    f.write(res.content)        
                 
 class Compilation:
     """Provides a clean and compiled version of the set of papers."""
