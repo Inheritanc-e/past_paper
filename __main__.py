@@ -16,7 +16,6 @@ BASE_QP_LINK = "https://papers.gceguide.com/A%20Levels/{}%20({})/{}/{}_{}_qp_{}.
 
 with open('subject_info.json') as f:
     s_info = json.load(f)
-
 def get_link_info(parsing_string:str) -> dict:
     """It goes through the input and respectively assigns it to aligned position."""
     
@@ -65,8 +64,7 @@ class Setup_Compilation:
         The dictionary is given in terms that would work for `get_link`
         """
         parsed = self.parsing_string.split('/')
-        paper_range = range(int(f"{parsed[1]}1"), 
-                            int(f"{parsed[1]}4"))
+        paper_range = range(int(parsed[1])*10+1, int(parsed[1])*10+4)
         season_range = list(s_info['Season'].values())
         year_range = list(map(lambda x: int(x), parsed[-1].split('-')))
         return [
@@ -74,8 +72,8 @@ class Setup_Compilation:
                 'subject_name': s_info['Subject_Info'][parsed[0]],
                 'subject_code': parsed[0],
                 'year': y,
-                'paper': p,
                 'season': s,
+                'paper': p,
             }
             for y, s, p in itertools.product(
                 range(year_range[0], year_range[1] + 1),
@@ -86,15 +84,22 @@ class Setup_Compilation:
         
     def void_repeated(self) -> list:
         """Avoids downloading repeated papers."""
-        ...                
         
+        link_codes = self.get_qp()
+        for subject_in_repeated in link_codes:    
+            if subject_in_repeated['subject_code'] in s_info['Repeated'].keys() \
+                and subject_in_repeated['paper'] in s_info['Repeated'][subject_in_repeated['subject_code']]:
+                link_codes.remove(subject_in_repeated)
+        
+        return link_codes
         
     def download_qp(self) -> None:
         """Downloads the list of question paper extracted from `get_qp`"""
         # sourcery skip: avoid-builtin-shadow
         
-        link_codes = self.get_qp()
+        link_codes = self.void_repeated()
         links = [(f"{link['year']}-{link['season']}-{link['paper']}", get_link(link, 'qp')) for link in link_codes]
+
         with contextlib.suppress(FileExistsError):
             dir = f"papers/{'.'.join(self.parsing_string.split('/'))}"
             os.makedirs(dir)
