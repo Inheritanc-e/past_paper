@@ -30,7 +30,7 @@ def get_link_info(parsing_string:str) -> dict:
 
 def get_link(info:dict, type:str) -> str:    
     """Returns the link object which would open the papers."""
-    print(info['year'])
+
     return (
         BASE_MS_LINK.format(
             info['subject_name'],
