@@ -10,9 +10,8 @@ import requests
 
 from fitz import TextWriter
 
-
-BASE_MS_LINK = "https://dynamicpapers.com/wp-content/uploads/2015/09/{}_{}_ms_{}.pdf"
-BASE_QP_LINK = "https://dynamicpapers.com/wp-content/uploads/2015/09/{}_{}_qp_{}.pdf"
+BASE_MS_LINK = "https://papers.gceguide.com/A%20Levels/{}%20({})/{}/{}_{}_ms_{}.pdf"
+BASE_QP_LINK = "https://papers.gceguide.com/A%20Levels/{}%20({})/{}/{}_{}_qp_{}.pdf"
 
 with open('subject_info.json') as f:
     s_info = json.load(f)
@@ -28,21 +27,26 @@ def get_link_info(parsing_string:str) -> dict:
         'paper':splitted[1], 
         'season':s_info['Season'][splitted[2].upper()+splitted[3].upper()]
     }
-    
+
 def get_link(info:dict, type:str) -> str:    
     """Returns the link object which would open the papers."""
-    
+    print(info['year'])
     return (
         BASE_MS_LINK.format(
+            info['subject_name'],
             info['subject_code'],
-            f"{info['season']}{info['year']}",
-
+            '20'+info['year'],
+            info['subject_code'],
+            info['season']+info['year'],
             info['paper'],
         )
         if type == 'ms'
         else BASE_QP_LINK.format(
+            info['subject_name'],
             info['subject_code'],
-            f"{info['season']}{info['year']}",
+            '20'+info['year'],
+            info['subject_code'],
+            info['season']+info['year'],
             info['paper'],
         )
     )
