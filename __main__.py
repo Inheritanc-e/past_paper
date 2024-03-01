@@ -105,7 +105,6 @@ class Setup_Compilation:
             os.makedirs(dir)
             
         for l in links:
-            print(f"l: {l}")
             res = requests.get(l[1])
             if res.status_code == 200:
                 with open(f"{dir}/{l[0]}.pdf", 'wb') as f:
