@@ -235,7 +235,7 @@ while True:
                 
                 Compile = Compilation(file_list, parse_object, int(second_parse))
                 compiled_document = Compile.create_paper_compilation()
-                compiled_name = f"{s_info['Subject_Info'][parse_object.split('/')[0]].lower()}_p{parse_object.split('/')[1]}.pdf"
+                compiled_name = f"papers/{s_info['Subject_Info'][parse_object.split('/')[0]].lower()}_p{parse_object.split('/')[1]}.pdf"
                 
                 compiled_document.save(compiled_name)
 
