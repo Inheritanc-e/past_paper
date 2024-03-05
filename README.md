@@ -14,9 +14,11 @@ This opens the past paper of a levels subject after given a code in the form of
 6. Extract the files in your desired folder.
 7. Open the folder and go to `subject_info.json`. If the subjects you have are not there, replace them with the current ones in the same format as they existed.
 8. Open terminal and `cd` to the directory in which your folder is in.
-9. Type `python -m past_paper`
-10. You will be presented with two different modes, `get paper` and `ms`.
-    Here, `get paper` mode is for downloading papers of any given subject using the format specified `subject code/paper number/year start-year finish`.
-11. Your program is now up and running, if you want to exit type `q`.
-12. Now, everytime you want to open a past paper, you just have execute step 7.
-13. You can find all of the downloaded past papers in the `papers` folder created by the program.
+9. First we need to create pipenv. To do that, type the following steps sequentially
+    ```cmd
+    > python -m pip install pipenv
+    > pipenv install
+    ```
+10. The requirements for this program to run has been completed.
+11. Type `help` or `h` on how to use this program.
+12. You can find all of the downloaded past papers in the `papers` folder created by the program.

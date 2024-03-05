@@ -188,8 +188,8 @@ def define_options() -> str:
         subject_code/paper/season/year,  i.e: 9702/42/m/j/22  (Opens physics 42 of 2022)
         
     On top of that you are also provided functions to interact with many different past_papers.
-        get-paper: bulk downloads question papers from the given range
-        compile-paper: combines the bulk download into a single paper
+        get paper: bulk downloads question papers from the given range
+        compile paper: combines the bulk download into a single paper
     •Note: The format for the above is: 
         subject_code/paper/year-range, i.e 9702/4/18-21 (Downloads all physics paper 4 from 2018-2021)
                 """
