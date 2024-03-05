@@ -12,8 +12,6 @@ import requests
 from fitz import TextWriter
 
 
-#https://papers.gceguide.com/A%20Levels/Physics%20(9702)/2023/9702_s23_ms_42.pdf
-#https://papers.gceguide.com/A%20Levels/Physics%20(9702)/2023/42_s23_ms_42.pdf
 BASE_MS_LINK = "https://papers.gceguide.com/A%20Levels/{}%20({})/{}/{}_{}_ms_{}.pdf"
 BASE_QP_LINK = "https://papers.gceguide.com/A%20Levels/{}%20({})/{}/{}_{}_qp_{}.pdf"
 
