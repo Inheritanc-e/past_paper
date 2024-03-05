@@ -19,6 +19,6 @@ This opens the past paper of a levels subject after given a code in the form of
     > python -m pip install pipenv
     > pipenv install
     ```
-10. The requirements for this program to run has been completed.
+10. The requirements for this program to run has been completed. Any time you want to the prgram type `pipenv run main` from the `past_paper` directory.
 11. Type `help` or `h` on how to use this program.
 12. You can find all of the downloaded past papers in the `papers` folder created by the program.
