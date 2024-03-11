@@ -9,7 +9,7 @@ This opens the past paper of a levels subject after given a code in the form of
 1. Install python if you haven't already. Use this video:
     https://www.youtube.com/watch?v=ExJHGEn6gt0
     as a guideline.
-2. After installing python install git. Use this video:
+2. After installing python, we need to install git. Use this video:
     https://www.youtube.com/watch?v=cJTXh7g-uCM
     as a guideline.
 3. After installing both of those prerequisite use the following video as a guideline:
