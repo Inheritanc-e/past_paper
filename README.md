@@ -13,3 +13,5 @@ This opens the past paper of a levels subject after given a code in the form of
     https://www.youtube.com/watch?v=cJTXh7g-uCM
     as a guideline.
 3. After installing both of those prerequisite use the following video as a guideline:
+    a. Use `Ctrl + R` and type `cmd`
+    b. Link to retrieve the past_paper: https://github.com/Inheritanc-e/past_paper.git
