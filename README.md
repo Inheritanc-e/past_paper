@@ -16,6 +16,7 @@ This opens the past paper of a levels subject after given a code in the form of
     a. Use `Ctrl + R` and type `cmd`  
     b. Link to retrieve the past_paper: https://github.com/Inheritanc-e/past_paper.git
 
-    <video width="320" height="240" controls>
-        <source src="past_paper_guide.mp4" type="video/mp4">
-    </video>
+
+
+https://github.com/Inheritanc-e/past_paper/assets/72969159/5ffd1ff5-88aa-4e52-b271-6bfcd2b23c82
+
