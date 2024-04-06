@@ -123,12 +123,19 @@ class Compilation:
         """Sets the first page of the compilation."""
         
         doc = fitz.open()
-        parsed_text = "".join(s_info['Subject_Info'][self.text.split('/')[0]]) + f" Paper {self.text.split('/')[1]}"
+        
+        parsed_text = self.text.split('/')
+        paper_info_text = "".join(s_info['Subject_Info'][parsed_text[0]]) + f" Paper {parsed_text[1]}"
+        year_info_ = [f'{2000+int(year)}' for year in parsed_text[2].split('-')]
+        year_info_text = "-".join(year_info_)
+        
         page = doc.new_page()
         page.draw_rect(page.rect, color=None, fill=(0, 1, 1), overlay=False)
         tw = TextWriter(page.rect)
         font = fitz.Font("times-bold")
-        tw.append((76,400), parsed_text, font=font, fontsize=24)
+        tw.append((76,400), paper_info_text, font=font, fontsize=24)
+        tw.append((76, 440), year_info_text, font=font, fontsize=20)
+        
         tw.write_text(page, color=(0,0,0))
         return doc
     
