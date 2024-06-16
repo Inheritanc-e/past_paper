@@ -94,12 +94,12 @@ class Setup_Compilation:
         
         return link_codes
         
-    def download_qp(self) -> None:
+    def download_qp(self, type_:str) -> None:
         """Downloads the list of question paper extracted from `get_qp`"""
         # sourcery skip: avoid-builtin-shadow
         
         link_codes = self.void_repeated()
-        links = [(f"{link['year']}-{link['season']}-{link['paper']}", get_link(link, 'qp')) for link in link_codes]
+        links = [(f"{link['year']}-{link['season']}-{link['paper']}", get_link(link, type_)) for link in link_codes]
 
         with contextlib.suppress(FileExistsError):
             dir = f"papers/{'.'.join(self.parsing_string.split('/'))}"
@@ -197,7 +197,7 @@ def define_options() -> str:
         compile paper: combines the bulk download into a single paper
     •Note: The format for the above is: 
         subject_code/paper/year-range, i.e 9702/4/18-21 (Downloads all physics paper 4 from 2018-2021)
-                """
+        """
     
 count = 0
 # sourcery skip: de-morgan
@@ -231,7 +231,11 @@ while True:
             if parse_object == 'q':
                 break
             
-            Setup_Compilation(parse_object).download_qp()
+            type_ = input("Mark Scheme Or Question Paper? -> ")
+            if type_.lower() not in ['ms', 'qp']:
+                break
+            
+            Setup_Compilation(parse_object).download_qp(type_)
 
             if mode == 'compile paper':
                 second_parse = input("Enter the difference number of pages from the front page to your first page: ")
