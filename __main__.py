@@ -11,9 +11,9 @@ import requests
 
 from fitz import TextWriter
 
-
-BASE_MS_LINK = "https://papers.gceguide.com/A%20Levels/{}%20({})/{}/{}_{}_ms_{}.pdf"
-BASE_QP_LINK = "https://papers.gceguide.com/A%20Levels/{}%20({})/{}/{}_{}_qp_{}.pdf"
+#https://papers.gceguide.cc/a-levels/chemistry-(9701)/2023/9701_s23_ms_42.pdf
+BASE_MS_LINK = "https://papers.gceguide.cc/a-levels/{}-({})/{}/{}_{}_ms_{}.pdf"
+BASE_QP_LINK = "https://papers.gceguide.cc/a-levels/{}-({})/{}/{}_{}_qp_{}.pdf"
 
 with open('subject_info.json') as f:
     s_info = json.load(f)
@@ -32,10 +32,10 @@ def get_link_info(parsing_string:str) -> dict:
 def get_link(info:dict, type:str) -> str:    
     """Returns the link object which would open the papers."""
     s_name = info['subject_name'] if len(info['subject_name'].split()) <= 1 \
-        else '%20-%20'.join(info['subject_name'].split())
+        else '-'.join(info['subject_name'].split())
     return (
         BASE_MS_LINK.format(
-            s_name ,
+            s_name.lower() ,
             info['subject_code'],
             '20'+str(info['year']),
             info['subject_code'],
@@ -44,7 +44,7 @@ def get_link(info:dict, type:str) -> str:
         )
         if type == 'ms'
         else BASE_QP_LINK.format(
-            s_name ,
+            s_name.lower() ,
             info['subject_code'],
             '20'+str(info['year']),
             info['subject_code'],
@@ -147,7 +147,7 @@ class Compilation:
         return doc
     
     def merge_questions(self):
-        """Merges all of the pdf questions inot a single file."""
+        """Merges all of the pdf questions into a single file."""
         merged_ = fitz.open()
         for file in self.files:
             doc = fitz.open(file)
@@ -247,7 +247,7 @@ while True:
                 
                 Compile = Compilation(file_list, parse_object, int(second_parse))
                 compiled_document = Compile.create_paper_compilation()
-                compiled_name = f"papers/{s_info['Subject_Info'][parse_object.split('/')[0]].lower()}_p{parse_object.split('/')[1]}.pdf"
+                compiled_name = f"papers/{s_info['Subject_Info'][parse_object.split('/')[0]].lower()}_p{parse_object.split('/')[1]}_{type_}.pdf"
                 
                 compiled_document.save(compiled_name)
 
