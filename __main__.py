@@ -6,10 +6,10 @@ import os
 import contextlib
 import tempfile
 
-import fitz
+import pymupdf
 import requests
 
-from fitz import TextWriter
+from pymupdf import TextWriter
 
 #https://papers.gceguide.cc/a-levels/chemistry-(9701)/2023/9701_s23_ms_42.pdf
 BASE_MS_LINK = "https://papers.gceguide.cc/a-levels/{}-({})/{}/{}_{}_ms_{}.pdf"
@@ -122,7 +122,7 @@ class Compilation:
     def set_first_page(self):
         """Sets the first page of the compilation."""
         
-        doc = fitz.open()
+        doc = pymupdf.open()
         
         parsed_text = self.text.split('/')
         paper_info_text = "".join(s_info['Subject_Info'][parsed_text[0]]) + f" Paper {parsed_text[1]}"
@@ -132,7 +132,7 @@ class Compilation:
         page = doc.new_page()
         page.draw_rect(page.rect, color=None, fill=(0, 1, 1), overlay=False)
         tw = TextWriter(page.rect)
-        font = fitz.Font("times-bold")
+        font = pymupdf.Font("times-bold")
         tw.append((76,400), paper_info_text, font=font, fontsize=24)
         tw.append((76, 440), year_info_text, font=font, fontsize=20)
         
@@ -141,21 +141,21 @@ class Compilation:
     
     def set_last_page(self):
         """Sets the last page of the compilation"""
-        doc = fitz.open()
+        doc = pymupdf.open()
         page = doc.new_page()
         page.draw_rect(page.rect, color=None, fill=(0, 1, 1), overlay=False)
         return doc
     
     def merge_questions(self):
         """Merges all of the pdf questions into a single file."""
-        merged_ = fitz.open()
+        merged_ = pymupdf.open()
         for file in self.files:
-            doc = fitz.open(file)
+            doc = pymupdf.open(file)
             merged_.insert_pdf(doc, from_page=self.difference, to_page=len(doc))
         return merged_
     
     def create_paper_compilation(self):
-        doc = fitz.open()
+        doc = pymupdf.open()
         doc.insert_pdf(self.set_first_page())
         doc.insert_pdf(self.merge_questions())
         doc.insert_pdf(self.set_last_page())
